@@ -192,14 +192,7 @@ int main(int argc, char *argv[]) {
 						i++;
 					}
 					params[i]=NULL;
-					if (strstr(params[2],"default.")!=NULL) {
-#ifdef TARGET_RFW
-						params[2][strlen(params[2])]='\0';
-#else
-						params[2][strlen(params[2])-1]='\0';
-#endif
-					}
-					printf("%s\n", params[2]);
+
 					ret = execvp("opkrun",params);
 				} else {
 					printf("path2\n");
@@ -296,11 +289,7 @@ int main(int argc, char *argv[]) {
 		char temp[300];
 #endif
 
-#ifndef TARGET_PC
 		execlp("./simplemenu","simplemenu", NULL);
-#else
-		execlp("./simplemenu-x86","simplemenu-x86", "640","480",NULL);
-#endif
 	} else {
 		return (-1);
 	}

@@ -1,5 +1,5 @@
 # Software Name
-PROGRAM = invoker.dge
+PROGRAM = invoker
 #PLATFORM = BITTBOY
 #PLATFORM = RFW
 #PLATFORM = OD
@@ -15,9 +15,15 @@ else ifeq ($(PLATFORM), RFW)
 else ifeq ($(PLATFORM), OD)
 	CC = /opt/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
 else ifeq ($(PLATFORM), OD-BETA)
-	CC = /home/bittboy/Downloads/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc	
+	CC = /home/bittboy/Downloads/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
 else ifeq ($(PLATFORM), NPG)
-	CC = /opt/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc	
+	CC = /opt/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
+else ifeq ($(PLATFORM), funkey)
+        CC =/opt/FunKey-sdk-2.3.0/bin/arm-funkey-linux-musleabihf-gcc
+else ifeq ($(PLATFORM), miyoomini)
+	CC = arm-linux-gnueabihf-gcc
+else ifeq ($(PLATFORM), rgnano)
+        CC =arm-linux-gnueabihf-gcc
 else
 	PROGRAM = /home/bittboy/git/simplemenu/simplemenu/output/invoker.dge
 	CC = gcc
@@ -34,6 +40,12 @@ else ifeq ($(PLATFORM), OD-BETA)
 	CFLAGS = -O2 -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra -std=gnu99	
 else ifeq ($(PLATFORM), NPG)
 	CFLAGS = -O2 -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra -std=gnu99
+else ifeq ($(PLATFORM), miyoomini)
+	CFLAGS = -DMIYOOMINI -O2 -fdata-sections -ffunction-sections -flto -Wall -Wextra -std=gnu99
+else ifeq ($(PLATFORM), funkey)
+        CFLAGS = -O2 -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra -std=gnu99
+else ifeq ($(PLATFORM), rgnano)
+        CFLAGS = -O2 -fdata-sections -ffunction-sections -flto -Wall -Wextra -std=gnu99
 else
 	CFLAGS = -DTARGET_PC -O2 -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra -no-pie	
 endif
